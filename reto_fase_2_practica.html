@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reto Práctico - Fase 2: Ingeniería de Requisitos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-main: #f0fdf4; /* Light green */
+            --text-main: #1f2937;
+            --primary: #10b981; /* Emerald */
+            --secondary: #f59e0b; /* Amber */
+            --card-bg: #ffffff;
+            --hint-bg: #eff6ff;
+            --hint-border: #3b82f6;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            overflow: hidden;
+        }
+
+        .container {
+            height: 100vh;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+        }
+
+        section {
+            min-height: 100vh;
+            width: 100vw;
+            scroll-snap-align: start;
+            padding: 4rem 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        section:nth-child(even) { background-color: #ffffff; }
+        section:nth-child(odd) { background-color: #f8fafc; }
+
+        .content-wrapper {
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        h1 {
+            font-family: 'Nunito', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-family: 'Nunito', sans-serif;
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid var(--secondary);
+            display: inline-block;
+        }
+
+        h3 { font-size: 1.5rem; color: #374151; margin-bottom: 1rem; }
+        p { font-size: 1.15rem; margin-bottom: 1.5rem; line-height: 1.6; }
+
+        .card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            border: 1px solid #e5e7eb;
+            margin-bottom: 2rem;
+        }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+
+        .req-box {
+            background-color: #fef2f2;
+            border-left: 5px solid #ef4444;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .hint-box {
+            background-color: var(--hint-bg);
+            border-left: 5px solid var(--hint-border);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            font-size: 1rem;
+        }
+
+        .hint-box strong { color: var(--hint-border); }
+
+        .step-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        ul { list-style-position: inside; margin-bottom: 1.5rem; }
+        li { font-size: 1.1rem; margin-bottom: 0.5rem; }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            color: #6b7280;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+            40% { transform: translateY(-10px) translateX(-50%); }
+            60% { transform: translateY(-5px) translateX(-50%); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <!-- Slide 1: Portada -->
+        <section>
+            <div class="content-wrapper" style="text-align: center;">
+                <span class="step-badge" style="background: var(--secondary);">Reto Práctico - Fase 2</span>
+                <h1>Proyecto "Huellitas Felices" 🐾</h1>
+                <p style="font-size: 1.5rem; max-width: 700px; margin: 0 auto;">
+                    Aplica tus conocimientos de Validación, Priorización y Modelado en un escenario del mundo real.
+                </p>
+                <div class="card" style="margin-top: 3rem; text-align: left; border-top: 5px solid var(--primary);">
+                    <h3>Tu Misión Hoy:</h3>
+                    <p>Actuar como el Analista de Requisitos / Tech Lead para transformar las ideas confusas del cliente en un plan de desarrollo técnico claro y estructurado para tu equipo de programadores.</p>
+                </div>
+                <div class="scroll-indicator">Desliza ↓</div>
+            </div>
+        </section>
+
+        <!-- Slide 2: Contexto -->
+        <section>
+            <div class="content-wrapper">
+                <h2>El Contexto del Cliente 🏢</h2>
+                <div class="grid-2">
+                    <div class="card">
+                        <h3>¿Quiénes son?</h3>
+                        <p><strong>"Huellitas Felices"</strong> es un refugio local de animales. Actualmente llevan todos sus registros (animales rescatados, adoptantes, donaciones) en cuadernos de papel y hojas de Excel desactualizadas.</p>
+                        <p>La directora, Doña Marta, ha conseguido un pequeño presupuesto para digitalizar el refugio, pero <em>no sabe nada de tecnología</em>.</p>
+                    </div>
+                    <div class="card" style="background-color: #fffbeb;">
+                        <h3>El Problema Actual</h3>
+                        <ul>
+                            <li>Pierden el rastro de qué animales ya fueron adoptados.</li>
+                            <li>Las personas quieren donar, pero solo aceptan efectivo en el refugio.</li>
+                            <li>Tardan mucho en responder dudas por WhatsApp.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 3: Los Requerimientos -->
+        <section>
+            <div class="content-wrapper">
+                <h2>Lo que pidió Doña Marta (Requisitos Crudos) 📝</h2>
+                <p>En tu primera reunión, Doña Marta te dictó esta lista de deseos. Como puedes notar, están redactados en "lenguaje de cliente":</p>
+                
+                <div class="card">
+                    <div class="req-box">
+                        <strong>Req 1:</strong> "La página debe mostrar a los perritos y gatitos rápido para que la gente los vea y los quiera adoptar."
+                    </div>
+                    <div class="req-box">
+                        <strong>Req 2:</strong> "Necesitamos un chat en vivo 24/7 en la página con veterinarios para que la gente haga consultas sobre sus mascotas."
+                    </div>
+                    <div class="req-box">
+                        <strong>Req 3:</strong> "Quiero que la gente pueda donar dinero fácil, ya sea con tarjeta o por transferencia bancaria."
+                    </div>
+                    <div class="req-box">
+                        <strong>Req 4:</strong> "El sistema me tiene que avisar si un animalito lleva más de 3 meses en el refugio sin ser adoptado."
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 4: Paso 1 -->
+        <section>
+            <div class="content-wrapper">
+                <span class="step-badge">Paso 1: Validación</span>
+                <h2>Limpiando Ambigüedades 🧹</h2>
+                <p>Tu tarea es reescribir los <strong>Req 1</strong> y <strong>Req 3</strong> para que sean Claros, Consistentes y Testables (Medibles).</p>
+                
+                <div class="grid-2">
+                    <div class="card">
+                        <h3>Tu trabajo aquí:</h3>
+                        <p>Toma papel y lápiz (o tu editor) y transforma esas frases en requisitos técnicos que un programador pueda entender y un QA pueda probar.</p>
+                    </div>
+                    <div class="hint-box">
+                        <strong>💡 Pista para Coder:</strong>
+                        <br><br>
+                        - En el <em>Req 1</em>: ¿Qué es "rápido"? ¿Qué información debe mostrar el "catálogo" de animales? (ej. Foto, nombre, edad, estado).<br><br>
+                        - En el <em>Req 3</em>: ¿Qué pasarela de pago usarán? ¿Qué datos se guardan de la donación? ¡Especifica!
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 5: Paso 2 -->
+        <section>
+            <div class="content-wrapper">
+                <span class="step-badge">Paso 2: Priorización MoSCoW</span>
+                <h2>Definiendo el MVP 🎯</h2>
+                <p>Doña Marta quiere todo para el próximo mes, pero el equipo de desarrollo es pequeño. Clasifica los 4 requerimientos usando la técnica MoSCoW para definir el Producto Mínimo Viable (MVP).</p>
+
+                <div class="grid-2">
+                    <div class="card">
+                        <ul>
+                            <li><strong>Must Have:</strong> Vital para abrir la web.</li>
+                            <li><strong>Should Have:</strong> Importante, pero hay alternativas manuales.</li>
+                            <li><strong>Could Have:</strong> "Nice to have" si sobra tiempo.</li>
+                            <li><strong>Won't Have:</strong> Descartado o postergado.</li>
+                        </ul>
+                    </div>
+                    <div class="hint-box">
+                        <strong>💡 Pista para Coder:</strong>
+                        <br><br>
+                        - Analiza el <em>Req 2 (Chat 24/7)</em>: ¿Tienen presupuesto para pagar veterinarios 24/7? ¿Es el objetivo principal del refugio? (Pista: Probablemente es un Won't o Could).<br><br>
+                        - ¿Qué es lo mínimo para que el refugio empiece a funcionar digitalmente? (Catálogo y Donaciones).
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 6: Paso 3 -->
+        <section>
+            <div class="content-wrapper">
+                <span class="step-badge">Paso 3: Modelado</span>
+                <h2>Creando Historias de Usuario ✍️</h2>
+                <p>Elige el <strong>Req 1 (Catálogo de Mascotas)</strong> y redáctalo como una Historia de Usuario profesional.</p>
+
+                <div class="card">
+                    <h3>Estructura que debes usar:</h3>
+                    <p><strong>COMO</strong> [rol del usuario]</p>
+                    <p><strong>QUIERO</strong> [acción que desea realizar]</p>
+                    <p><strong>PARA</strong> [beneficio o valor que obtiene]</p>
+                    <hr style="margin: 1rem 0; border: 0; border-top: 1px solid #e5e7eb;">
+                    <p><strong>Criterios de Aceptación:</strong></p>
+                    <ul style="margin-top: 0.5rem;">
+                        <li>Dado que... Cuando... Entonces...</li>
+                        <li>(Lista al menos 3 condiciones técnicas).</li>
+                    </ul>
+                </div>
+
+                <div class="hint-box" style="margin-top: 0;">
+                    <strong>💡 Pista para Coder:</strong> Piensa en los filtros (ej. perros o gatos), cómo se ve la tarjeta del animal, y qué pasa si no hay animales disponibles.
+                </div>
+                
+                <div style="text-align: center; margin-top: 2rem;">
+                    <h3 style="color: var(--primary);">¡Reúnete con tu equipo, discutan y preparen sus respuestas!</h3>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        document.addEventListener('keydown', (e) => {
+            const container = document.querySelector('.container');
+            if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ') {
+                e.preventDefault();
+                container.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
+            } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+                e.preventDefault();
+                container.scrollBy({ top: -window.innerHeight, behavior: 'smooth' });
+            }
+        });
+    </script>
+</body>
+</html>
